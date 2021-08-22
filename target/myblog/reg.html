@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <script>
+        function mysub(type) {
+            // 1.拿到控件
+            var username = jQuery("#username");
+            var password1 = jQuery("#password");
+            var password2 = jQuery("#password2");
+            if (type == 2) {
+                if (confirm("确认清空？")) {
+                    username.val("");
+                    password1.val("");
+                    password2.val("");
+                }
+                return false;
+            }
+            //2.非空检验
+            if (username.val().trim() == "") {
+                alert("请先输入用户名");
+                username.focus();
+                return false;
+            }
+            if (password1.val().trim() == "") {
+                alert("请先输入密码");
+                password1.focus();
+                return false;
+            }
+            if (password2.val().trim() == "") {
+                alert("请先输入确认密码");
+                password2.focus();
+                return false;
+            }
+            if (password1.val() != password2.val()) {
+                alert("两次密码不一致");
+                return false;
+            }
+            // 3.使用 ajax 请求后端接口
+            jQuery.getJSON("reg", {
+                "username":username.val(),
+                "password":password1.val()
+                }, function (data) {
+                    if (data != null && data.succ != null && data.succ == 1) {
+                        alert("注册成功");
+                    }else {
+                        alert("注册失败 " + data.msg);
+                    }
+                }
+            );
+        }
+    </script>
+</head>
+<body>
+<div style="text-align: center; margin-top: 150px">
+    <h1>注册功能</h1>
+    用 户 名：&nbsp;&nbsp;<input id="username" name="username" type="text"><p></p>
+    密 &nbsp;&nbsp; 码：&nbsp;&nbsp;&nbsp;<input id="password" name="password" type="text"><p></p>
+    确认密码：&nbsp;<input id="password2" name="password2" type="text"><p></p>
+    <input onclick="mysub(1)" type="button" value=" 提 交 ">
+    <input onclick="mysub(2)" type="button" value=" 清 空 ">
+</div>
+
+</body>
+</html>
