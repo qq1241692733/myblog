@@ -1,8 +1,11 @@
 package dao;
+import com.sun.org.apache.xalan.internal.xsltc.dom.SimpleResultTreeImpl;
+import models.UserInfo;
 import utils.DBUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
  * Created with IntelliJ IDEA.
@@ -42,4 +45,24 @@ public class UserInfoDao {
         DBUtils.close(connection, statement, null);
         return result;
     }
+    /**
+     * 登录
+     */
+    public UserInfo getUser(String username, String password) throws SQLException {
+        UserInfo userInfo = new UserInfo();
+        Connection connection = DBUtils.getConnection();
+        String sql = "select * from userinfo where username = ? and password = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, username);
+        statement.setString(2, password);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            userInfo.setId(resultSet.getInt("id"));
+            userInfo.setUsername(resultSet.getString("username"));
+            userInfo.setPassword(resultSet.getString("password"));
+        }
+        DBUtils.close(connection, statement, resultSet);
+        return userInfo;
+    }
+
 }

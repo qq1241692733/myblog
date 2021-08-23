@@ -1,6 +1,7 @@
 package services;
 
 import dao.UserInfoDao;
+import utils.ResultJSONUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,8 +26,8 @@ public class RegServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("application/json");
+//        response.setCharacterEncoding("utf-8");
+//        response.setContentType("application/json");
         // 定义返回给前端的参数
         String msg = "";
         int succ = 0;
@@ -41,8 +43,13 @@ public class RegServlet extends HttpServlet {
             throwables.printStackTrace();
         }
         // 3.返回结果给前端
-        PrintWriter writer = response.getWriter();
-        // {"succ":1,"msg":"msg"}
-        writer.println("{\"succ\":1,\"msg\":\"msg\"}");
+//        PrintWriter writer = response.getWriter();
+//        // {"succ":1,"msg":"msg"}
+//        writer.println(String.format("{\"succ\":%d,\"msg\":\"%s\"}",
+//                succ, msg));
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("succ", succ);
+        result.put("msg", msg);
+        ResultJSONUtils.write(response, result);
     }
 }
