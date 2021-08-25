@@ -26,4 +26,8 @@ state int default 1,
 uid int not null
 );
 
+delete from userinfo;
+
+insert into userinfo(id,username,password) values (1,'admin','123');
+insert into articleinfo(title,content,uid) values('铁山靠','铁山靠与安妮',1);
 

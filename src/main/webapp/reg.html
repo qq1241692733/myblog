@@ -17,6 +17,8 @@
                     password2.val("");
                 }
                 return false;
+            }else if (type == 3) {
+                window.location.href='login.html';
             }
             //2.非空检验
             if (username.val().trim() == "") {
@@ -45,6 +47,7 @@
                 }, function (data) {
                     if (data != null && data.succ != null && data.succ == 1) {
                         alert("注册成功");
+                        window.location.href='login.html';
                     }else {
                         alert("注册失败 " + data.msg);
                     }
@@ -57,10 +60,11 @@
 <div style="text-align: center; margin-top: 150px">
     <h1>注册功能</h1>
     用 户 名：&nbsp;&nbsp;<input id="username" name="username" type="text"><p></p>
-    密 &nbsp;&nbsp; 码：&nbsp;&nbsp;&nbsp;<input id="password" name="password" type="text"><p></p>
-    确认密码：&nbsp;<input id="password2" name="password2" type="text"><p></p>
-    <input onclick="mysub(1)" type="button" value=" 提 交 ">
-    <input onclick="mysub(2)" type="button" value=" 清 空 ">
+    密 &nbsp;&nbsp; 码：&nbsp;&nbsp;&nbsp;<input id="password" name="password" type="password"><p></p>
+    确认密码：&nbsp;<input id="password2" name="password2" type="password"><p></p>
+    &nbsp;&nbsp;&nbsp;<input onclick="mysub(1)" type="button" value=" 注 册 ">&nbsp;&nbsp;&nbsp;
+    <input onclick="mysub(2)" type="button" value=" 清 空 ">&nbsp;&nbsp;&nbsp;
+    <input onclick="mysub(3)" type="button" value=" 登 录 ">&nbsp;&nbsp;&nbsp;
 </div>
 
 </body>

@@ -26,7 +26,8 @@
                     "password" : password.val()
                     }, function (data) {
                         if (data != null && data.succ == 1) {
-                            alert("登录成功");
+                            //alert("登录成功");
+                            location.href='artlist.html';
                         } else {
                             alert("登录失败：输入的用户名或者密码有误")
                         }
@@ -40,7 +41,8 @@
                 }
             }else if (type == 3) {
                 // 跳转到注册页面
-
+                window.location.href='reg.html';
+                return false;
             }
         }
     </script>
@@ -49,10 +51,11 @@
     <div style="text-align: center; margin-top: 150px">
         <h1>登录功能</h1>
         用户名：<input id="username" name="username" type="text"><p></p>
-        密 &nbsp;&nbsp; 码：<input id="password" name="password" type="text"><p></p>
+        密 &nbsp;&nbsp; 码：<input id="password" name="password" type="password"><p></p>
         &nbsp;&nbsp;&nbsp;<input type="button" onclick="mysub(1)" value=" 登 录 ">
         &nbsp;&nbsp;&nbsp;<input type="button" onclick="mysub(2)" value=" 清 空 ">
         &nbsp;&nbsp;&nbsp;<input type="button" onclick="mysub(3)" value=" 注 册 ">
+
     </div>
 </body>
 </html>
