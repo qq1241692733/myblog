@@ -41,4 +41,19 @@ public class ArticleInfoDao {
         DBUtils.close(connection, statement, resultSet);
         return list;
     }
+
+    // 删除文章
+    public int del(int id) throws SQLException {
+        int result = 0;
+        if (id > 0) {
+            Connection connection = DBUtils.getConnection();
+            String sql = "delete from articleinfo where id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            result = statement.executeUpdate();
+            DBUtils.close(connection, statement, null);
+        }
+        return result;
+    }
+
 }
