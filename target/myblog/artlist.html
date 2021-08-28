@@ -32,8 +32,9 @@
                             "            <td>" + article.title +"</td>\n" +
                             "            <td>" + article.createtime +"</td>\n" +
                             "            <td>" + article.rcount +"</td>\n" +
-                            "            <td>" + " <a href='javascript:'>修改</a>" +
-                            "<a href='javascript:mydel("+ article.id+")'> 删除 </a> " +
+                            "            <td>\n" +
+                            "                <a href='upart.html?id=" + article.id +
+                            "'>修改</a> <a href='javascript:mydel(" + article.id + ");'>删除</a>\n" +
                             "</td>\n" +
                             "        </tr>"
                     }

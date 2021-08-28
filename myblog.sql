@@ -31,3 +31,6 @@ delete from userinfo;
 insert into userinfo(id,username,password) values (1,'admin','123');
 insert into articleinfo(title,content,uid) values('铁山靠','铁山靠与安妮',1);
 
+insert into articleinfo (title,content,rcount,uid) values ("安妮","安妮和师傅",10,1);
+update articleinfo set title=?,content=? where id=?;
+

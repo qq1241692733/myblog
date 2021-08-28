@@ -56,4 +56,34 @@ public class ArticleInfoDao {
         return result;
     }
 
+    public ArticleInfo getArtById(int id) throws SQLException {
+        ArticleInfo articleInfo = new ArticleInfo();
+        if (id > 0) {
+            Connection connection = DBUtils.getConnection();
+            String sql = "select * from articleinfo where id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                articleInfo.setId(resultSet.getInt("id"));
+                articleInfo.setTitle(resultSet.getString("title"));
+                articleInfo.setContent(resultSet.getString("content"));
+            }
+            DBUtils.close(connection, statement, resultSet);
+        }
+        return articleInfo;
+    }
+
+    public int upArt(int id, String title, String content) throws SQLException {
+        int result = 0;
+        Connection connection = DBUtils.getConnection();
+        String sql = "update articleinfo set title=?,content=? where id=?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, title);
+        statement.setString(2, content);
+        statement.setInt(3, id);
+        result = statement.executeUpdate();
+        DBUtils.close(connection, statement, null);
+        return result;
+    }
 }
