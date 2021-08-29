@@ -33,4 +33,6 @@ insert into articleinfo(title,content,uid) values('铁山靠','铁山靠与安�
 
 insert into articleinfo (title,content,rcount,uid) values ("安妮","安妮和师傅",10,1);
 update articleinfo set title=?,content=? where id=?;
-
+insert into articleinfo
+select a.*,u.username from articleinfo a left join userinfo u on a.uid=u.id
+select a.*,u.username from articleinfo a left join userinfo u on a.uid=u.id;
