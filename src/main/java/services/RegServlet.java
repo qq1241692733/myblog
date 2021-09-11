@@ -52,4 +52,7 @@ public class RegServlet extends HttpServlet {
         result.put("msg", msg);
         ResultJSONUtils.write(response, result);
     }
+
+
+
 }

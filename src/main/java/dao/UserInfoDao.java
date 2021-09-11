@@ -65,4 +65,15 @@ public class UserInfoDao {
         return userInfo;
     }
 
+//    public static void main(String[] args) {
+//        int succ=-1;
+//        UserInfoDao userInfoDao = new UserInfoDao();
+//        try {
+//            succ = userInfoDao.addUser("111", "111");
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//        System.out.println(succ);
+//    }
+
 }
